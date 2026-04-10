@@ -15,6 +15,12 @@ public class VehicleController : MonoBehaviour
     void Update()
     {
         GetComponent<Rigidbody>().AddRelativeForce(desired_acceleration*10, 0, 0);
+        float dx = (Mouse.current.position.x.value - Screen.width / 2) / 200;
+        if (Mathf.Abs(dx) > 0.01f)
+        {
+            transform.Rotate(0, dx, 0);
+        }
+
     }
 
     void OnMove(InputValue action)
