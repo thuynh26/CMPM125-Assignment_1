@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using NUnit.Framework.Internal;
 
 public class VehicleController : MonoBehaviour
 {
@@ -8,20 +9,32 @@ public class VehicleController : MonoBehaviour
     public float impulse;
     public float turnrate;
 
+    public int lapCount = 0;
+    public TextMeshProUGUI laplbl;
+
     public float starttime;
     public TextMeshProUGUI timelbl;
+
+    public bool raceStarted;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        raceStarted = false;
         starttime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timelbl.text = string.Format("Current time: {0:F2} seconds", (Time.time - starttime));
+        // Update timer and lap counts
+        if (raceStarted)
+        {
+            timelbl.text = string.Format("Time: {0:F2} seconds", (Time.time - starttime));
+            laplbl.text = "Lap: " + lapCount;
+        }
 
+        // Accerelation and turning
         GetComponent<Rigidbody>().AddRelativeForce(desired_acceleration* impulse, 0, 0);
         float dx = (Mouse.current.position.x.value - Screen.width / 2) / turnrate;
         if (Mathf.Abs(dx) > 0.01f)

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class CheckpointController : MonoBehaviour
@@ -6,6 +7,8 @@ public class CheckpointController : MonoBehaviour
     public CheckpointController target;
     public MeshRenderer left;
     public MeshRenderer right;
+
+    public bool startingPoint;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,7 +20,10 @@ public class CheckpointController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (this == gameObject.GetComponent<CheckpointController>())
+        {
+
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,6 +35,19 @@ public class CheckpointController : MonoBehaviour
         VehicleController vehicle = other.gameObject.GetComponent<VehicleController>();
         if (vehicle != null && target == this)
         {
+            // Start race + timer if first time through starting point
+            if (!vehicle.raceStarted && startingPoint)
+            {
+                vehicle.raceStarted = true;
+                vehicle.lapCount = 1;
+                vehicle.starttime = Time.time;
+            } else if (vehicle.raceStarted && startingPoint)
+            {
+                vehicle.lapCount++;
+                vehicle.laplbl.text = "Lap: " + vehicle.lapCount;
+            }
+
+
             Debug.Log("Checkpoint reached");
             target = next;
             next.target = next;
