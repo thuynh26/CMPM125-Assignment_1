@@ -28,6 +28,7 @@ public class VehicleController : MonoBehaviour
     void OnMove(InputValue action)
     {
         var movement = action.Get<Vector2>();
-        desired_acceleration = movement.y;
+        desired_acceleration = -movement.y;
+        // changed to negative because the y-axis is inverted for some reason
     }
 }
