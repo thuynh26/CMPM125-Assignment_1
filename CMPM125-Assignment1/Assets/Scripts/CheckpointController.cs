@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class CheckpointController : MonoBehaviour
 {
+    public CharacterController next;
+    public CharacterController target;
+    public MeshRenderer left;
+    public MeshRenderer right;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
