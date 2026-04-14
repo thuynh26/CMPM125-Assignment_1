@@ -3042,7 +3042,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382451112}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 15b18310feca17648bffd01aa0b8d3bf, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3170,8 +3170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   desired_acceleration: 0
-  impulse: 10
-  turnrate: 600
+  impulse: 30
+  turnrate: 300
   lapCount: 0
   laplbl: {fileID: 768098415}
   starttime: 0

@@ -35,7 +35,7 @@ public class VehicleController : MonoBehaviour
         }
 
         // Accerelation and turning
-        GetComponent<Rigidbody>().AddRelativeForce(desired_acceleration* impulse, 0, 0);
+        GetComponent<Rigidbody>().AddRelativeForce(desired_acceleration * impulse, 0, 0);
         float dx = (Mouse.current.position.x.value - Screen.width / 2) / turnrate;
         if (Mathf.Abs(dx) > 0.01f)
         {
