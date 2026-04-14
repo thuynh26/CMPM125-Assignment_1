@@ -5,9 +5,13 @@ using NUnit.Framework.Internal;
 
 public class VehicleController : MonoBehaviour
 {
+    private Rigidbody rbVehicle;
+
     public float desired_acceleration;
     public float impulse;
     public float turnrate;
+    // public float turnTorque = 5f;
+    // public float turnInput;
 
     public int lapCount = 0;
     public TextMeshProUGUI laplbl;
@@ -20,6 +24,7 @@ public class VehicleController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        rbVehicle = GetComponent<Rigidbody>();
         raceStarted = false;
         starttime = Time.time;
     }
@@ -35,7 +40,8 @@ public class VehicleController : MonoBehaviour
         }
 
         // Accerelation and turning
-        GetComponent<Rigidbody>().AddRelativeForce(desired_acceleration * impulse, 0, 0);
+        rbVehicle.AddRelativeForce(desired_acceleration * impulse, 0, 0);
+        // rbVehicle.AddRelativeTorque(0, turnInput * turnTorque, 0);
         float dx = (Mouse.current.position.x.value - Screen.width / 2) / turnrate;
         if (Mathf.Abs(dx) > 0.01f)
         {
